@@ -25,10 +25,10 @@ const ProductSummery = ({cart}) => {
   const handleBreakTime = (item) => {
     const prvStore = localStorage.getItem('gymStore');
     const oldGym = JSON.parse(prvStore);
-    console.log(oldGym)
+   
 
     if (oldGym) {
-      localStorage.setItem('gymStore',JSON.stringify([...oldGym, item]))
+      localStorage.setItem('gymStore',JSON.stringify({...oldGym, item}))
     }else{
       localStorage.setItem('gymStore',JSON.stringify(item))
     }
@@ -46,9 +46,9 @@ const ProductSummery = ({cart}) => {
     <>
       <div className='lg:w-[20%] w-[30%] bg-black-rgba min-h-screen'>
         <div className='sticky top-0'>
-            <div className='flex pt-6 pl-4'>
+            <div className='flex-col md:flex lg:flex-row md:flex-row pt-6 pl-4'>
               <img className='w-[50px] rounded-full' src={man} alt="man" />
-              <div className='ml-3 text-left'>
+              <div className='ml-0 md:ml-3 text-left'>
                 <h2 className='font-bold'>Yeasin Arafat</h2>
                 <p>Bangladesh</p>
               </div>

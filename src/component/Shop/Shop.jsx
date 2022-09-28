@@ -11,22 +11,6 @@ const Shop = () => {
   const [cart, setCart] = useState([]);
 
 
-
-// useEffect(() =>{
-//   const storeCard = getStoreCart();
-//    for (const id in storeCard) {
-//     const addedProduct = products.find(product => product.id === id);
-//     const saveCart = [];
-//       if (addedProduct) {
-//         const quantity = storeCard[id];
-//         addedProduct.quantity = quantity;
-//         saveCart.push(addedProduct)
-//       }
-//       setCart(saveCart)
-//    }
-   
-// },[products])
-
   const handlerAddToCart = (product) => {
     const newCart = [...cart, product];
     setCart(newCart);
@@ -41,7 +25,7 @@ const Shop = () => {
   return (
     <div>
       
-      <div className='lg:w-[1200px] mx-auto w-[90%]'>
+      <div className='lg:w-[1200px] mx-auto w-[95%]'>
       
         <div className="flex justify-between flex-wrap">
           <div className='lg:w-[78%] w-[68%]'>
