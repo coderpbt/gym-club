@@ -18,7 +18,7 @@ const ProductSummery = ({cart}) => {
   
   return (
     <>
-      <div className='lg:w-[20%] w-[30%] bg-black-rgba min-h-screen '>
+      <div className='lg:w-[20%] w-[30%] bg-black-rgba min-h-screen'>
         <div className='sticky top-0'>
             <h2 className='text-xl font-semibold py-4'>Order Summery</h2>
             <div className='pt-11'>

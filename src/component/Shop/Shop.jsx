@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { addToDb, getStoreCart } from '../../utilities/fakedb';
 import ProductSummery from '../ProductSummery/ProductSummery';
 import ShopTemplate from './ShopTemplate';
+import logo from '../../images/logo.png'
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -52,10 +53,16 @@ useEffect(() =>{
   }, [])
   return (
     <div>
+      
       <div className='lg:w-[1200px] mx-auto w-[90%]'>
+      
         <div className="flex justify-between flex-wrap">
           <div className='lg:w-[78%] w-[68%]'>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 pt-24'>
+          <div className="logo flex items-center">
+            <img className='w-20' src={logo} alt="m-logo" />
+            <h2 className='text-2xl'>DPI-GYM-CLUB</h2>
+          </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
               {
                 productsSlice.map(product => <ShopTemplate product={product} key={product.id} handlerAddToCart={handlerAddToCart} />)
               }

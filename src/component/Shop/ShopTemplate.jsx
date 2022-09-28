@@ -6,7 +6,7 @@ const ShopTemplate = ({ product, handlerAddToCart }) => {
   return (
     <>
 
-      <div className="card card-compact bg-base-100 shadow-xl">
+      <div className="card card-compact bg-base-100 shadow-xl pt-9 self-start">
         <figure><img src={img ? img : 'Not Found'} alt="Shoes" /></figure>
         <div className="card-body">
           <h2 className="card-title text-left">{name}</h2>
