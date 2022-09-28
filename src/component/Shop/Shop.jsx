@@ -11,7 +11,6 @@ const Shop = () => {
   const [cart, setCart] = useState([]);
   // console.log(products[0])
 
-const productsSlice = products.slice(0, 10);
 
 useEffect(() =>{
   const storeCard = getStoreCart();
@@ -47,7 +46,7 @@ useEffect(() =>{
   }
 
   useEffect(() => {
-    fetch('products.json')
+    fetch('gym.json')
       .then(res => res.json())
       .then(data => setProducts(data))
   }, [])
@@ -62,9 +61,9 @@ useEffect(() =>{
             <img className='w-20' src={logo} alt="m-logo" />
             <h2 className='text-2xl'>DPI-GYM-CLUB</h2>
           </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
               {
-                productsSlice.map(product => <ShopTemplate product={product} key={product.id} handlerAddToCart={handlerAddToCart} />)
+                products.map(product => <ShopTemplate product={product} key={product.id} handlerAddToCart={handlerAddToCart} />)
               }
             </div>
           </div>

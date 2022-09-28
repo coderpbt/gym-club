@@ -1,20 +1,26 @@
 import React from 'react';
-import man from '../../images/man.jpg'
+import man from '../../images/man.jpg';
+import Swal from "sweetalert2";
 
 const ProductSummery = ({cart}) => {
-  console.log(cart)
+  // console.log(cart)
   let total = 0;
   let shipping = 0;
   let quantity = 0;
   for (const product of cart) {
+    console.log(cart)
     quantity = quantity + product.quantity;
-     total += product.price * product.quantity;
+     total += product.time * product.quantity;
      shipping += product.shipping;
   }
 
   const taxx = (total * 0.1).toFixed(2);
   const tax = parseFloat(taxx);
   const grandTotal = total + tax + shipping;
+
+  const handelActivity = () => {
+    Swal.fire("Good job!", "Your Activity Completed!", "success");
+  }
 
   
   return (
@@ -70,7 +76,7 @@ const ProductSummery = ({cart}) => {
                <h2 className='font-bold text-left'>Exercise Details</h2>
                <div className='flex justify-between items-center bg-slate-50 p-2 rounded-md my-3'>
                   <h2 className='text-sm font-semibold'>Exercise Time</h2>
-                  <span className='text-sm font-semibold'>200 Seconds</span>
+                  <span className='text-sm font-semibold'>{total} Seconds</span>
                </div>
                <div className='flex justify-between items-center bg-slate-50 p-2 rounded-md my-3'>
                   <h2 className='text-sm font-semibold'>Break Time</h2>
@@ -79,13 +85,12 @@ const ProductSummery = ({cart}) => {
             </div>   
 
             <div className='pt-11'>
-              <h6 className='text-left px-3 pb-5'>Selected Items: {quantity}</h6>
               <h6 className='text-left px-3 pb-5'>Total Price: ${total}</h6>
               <h6 className='text-left px-3 pb-5'>Total Shipping Charge: ${shipping}</h6>
               <h6 className='text-left px-3 pb-5'>Tax: ${tax}</h6>
               <h6 className='text-left px-3 font-semibold'>Grand Total: ${grandTotal.toFixed(2)}</h6>
             </div>
-            <a href='#' className='flex items-center bg-[#FF3030] rounded-xl p-2 justify-center text-white mx-2 mt-12'> <span className='mr-2'>Activity Completed </span>
+            <a href='#' onClick={handelActivity} className='flex items-center bg-[#FF3030] rounded-xl p-2 justify-center text-white mx-2 mt-12'> <span className='mr-2'>Activity Completed </span>
             </a>
           </div>
           </div>
