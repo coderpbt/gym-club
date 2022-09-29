@@ -1,58 +1,40 @@
-// use local storage to manage cart data
-const addToDb = id =>{
-    let shoppingCart = {};
 
-    //get the shopping cart from local storage
-    const storedCart = localStorage.getItem('shopping-cart');
-    if(storedCart){
-        shoppingCart = JSON.parse(storedCart);
-    }
-
-    // add quantity
-    const quantity = shoppingCart[id];
-    if(quantity){
-        const newQuantity = quantity + 1;
-        shoppingCart[id] = newQuantity;
-    }
-    else{
-        shoppingCart[id] = 1;
-    }
-    localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
-}
-
-// get store card
-
-const getStoreCart = () => {
-    let shoppingCart = {};
-
-    //get the shopping cart from local storage
-    const storedCart = localStorage.getItem('shopping-cart');
-    if(storedCart){
-        shoppingCart = JSON.parse(storedCart);
-    }
-
-    return shoppingCart;
-}
-
-
-const removeFromDb = id =>{
-    const storedCart = localStorage.getItem('shopping-cart');
-    if(storedCart){
-        const shoppingCart = JSON.parse(storedCart);
-        if(id in shoppingCart){
-            delete shoppingCart[id];
-            localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+const addTocart = (product, quantity) => {
+    const cart = getStoreCart();
+    cart[product] = quantity;
+    const newCart = {
+        ...cart,
+        breakTime: {
+            time: product, 
+            id: quantity
         }
     }
+    localStorage.setItem('cart', JSON.stringify(newCart))
 }
 
-const deleteShoppingCart = () =>{
-    localStorage.removeItem('shopping-cart');
+
+const getStoreCart = () => {
+    const storeCart = localStorage.getItem('cart');
+    let cart = {};
+    if (storeCart) {
+        cart = JSON.parse(storeCart)
+    } 
+    return cart;
 }
+
+const getBreakTime = () => {
+    const cartJSON = localStorage.getItem('cart');
+
+    let cart;
+    if (cartJSON) {
+        cart = JSON.parse(cartJSON)
+    } 
+
+    return cart?.breakTime;
+}
+  
 
 export {
-    addToDb, 
-    removeFromDb,
-    deleteShoppingCart,
-    getStoreCart
+    addTocart,
+    getBreakTime
 }

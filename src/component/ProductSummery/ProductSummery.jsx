@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import man from '../../images/man.jpg';
 import Swal from "sweetalert2";
 import BreakTime from './BreakTime';
+import { addTocart, getBreakTime } from '../../utilities/fakedb';
 
 const ProductSummery = ({cart}) => {
 
-  let total = 0;
-  for (const product of cart) {
-    total += product.time;
-  }
+  const reduceTotal = cart.reduce((previous, current) => previous + current.time ,0)
 
  
-
   const breakTimeInfo = [
     {btime : 10, id:1},
     {btime : 20, id:2},
@@ -21,25 +18,26 @@ const ProductSummery = ({cart}) => {
   ]
 
   const [times, setTimes] = useState(0);
+  
 
   const handleBreakTime = (item) => {
-    const prvStore = localStorage.getItem('gymStore');
-    const oldGym = JSON.parse(prvStore);
-   
-
-    if (oldGym) {
-      localStorage.setItem('gymStore',JSON.stringify({...oldGym, item}))
-    }else{
-      localStorage.setItem('gymStore',JSON.stringify(item))
-    }
-
     const newItem = item.btime;
-    setTimes(newItem);
+    const qtyItem = item.id;
+   
+    const uiAdd = addTocart(newItem,qtyItem)
+    setTimes(newItem,uiAdd);
   }
 
   const handelActivity = () => {
     Swal.fire("Good job!", "Your Activity Completed!", "success");
   }
+
+
+  useEffect(()=>{
+    const lastValue = getBreakTime();
+    setTimes(lastValue ? lastValue.time : 0);
+  }, []);
+
 
   
   return (
@@ -88,7 +86,7 @@ const ProductSummery = ({cart}) => {
                <h2 className='font-bold text-left'>Exercise Details</h2>
                <div className='flex justify-between items-center bg-slate-50 p-2 rounded-md my-3'>
                   <h2 className='text-sm font-semibold'>Exercise Time</h2>
-                  <span className='text-sm font-semibold'>{total} Seconds</span>
+                  <span className='text-sm font-semibold'>{reduceTotal} Seconds</span>
                </div>
                <div className='flex justify-between items-center bg-slate-50 p-2 rounded-md my-3'>
                   <h2 className='text-sm font-semibold'>Break Time</h2>
