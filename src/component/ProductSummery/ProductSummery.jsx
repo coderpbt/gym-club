@@ -95,7 +95,7 @@ const ProductSummery = ({cart}) => {
             </div>   
 
              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href='#' onClick={handelActivity} className='flex items-center bg-[#FF3030] rounded-xl p-2 justify-center text-white mx-2 mt-12'> <span className='mr-2'>Activity Completed </span>
+            <a href='#' onClick={handelActivity} className='flex pb-2 items-center bg-[#FF3030] rounded-xl p-2 justify-center text-white mx-2 mt-12'> <span className='mr-2'>Activity Completed </span>
             </a>
           </div>
         </div>
